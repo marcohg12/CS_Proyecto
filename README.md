@@ -1,2 +1,6 @@
-# CS_Proyecto
-Este repositorio contiene el proyecto del curso de Computación y Sociedad, II Semestre, 2024
+# Computación y Sociedad: Proyecto
+
+## Integrantes
+- Ariana Alvarado Molina
+- María Paula Bolaños Apú
+- Marco Herrera González

@@ -1,9 +1,11 @@
 import express from "express";
+import cors from "cors";
 import _ from "./env.js";
 import authRouter from "./routers/auth-router.js";
 
 // Configuración del servidor
 const app = express();
+app.use(cors());
 
 // Configuración de routers
 app.use('/auth', authRouter);

@@ -6,15 +6,15 @@ const router = express.Router();
 // Configuración de variables de ambiente
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
+const redirectUri = `http://127.0.0.1:3000/auth/login_callback`;
 
 // ------------------------------------------------------------------------------------------------------------------------
 
 router.get("/login", async (req, res) => {
     const scope = "read write follow";
-    const redirectUri = `http://127.0.0.1:${process.env.PORT}/auth/login_callback`;
     const mastodonInstance = 'https://mastodon.social';
     const authorizationUrl = `${mastodonInstance}/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`; 
-    res.redirect(authorizationUrl);
+    res.json({authorizationUrl: authorizationUrl});
 });
 
 router.get("/login_callback", async (req, res) => {
@@ -40,8 +40,6 @@ router.get("/login_callback", async (req, res) => {
       });
   
       const { access_token, token_type, scope, created_at } = response.data;
-  
-      console.log('Access Token:', access_token);
   
       res.json({ access_token });
 

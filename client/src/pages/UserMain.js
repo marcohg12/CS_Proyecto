@@ -1,17 +1,15 @@
 import React from "react";
 import UserSideBar from "../components/UserSideBar";
 import BaseWindow from "../components/BaseWindow";
+import Timeline from "../components/Timeline";
 
 function UserMain(){
 
     return(
-    <BaseWindow 
-        sideBar={<UserSideBar/>} 
-        pageContent={
-        <>
-        <h1>Token de acceso: {localStorage.getItem("mastodon_access_token")}</h1>
-        </>}
-    />);
+        <BaseWindow 
+            sideBar={<UserSideBar/>} 
+            pageContent={<Timeline type="home"/>}
+        />);
 
 }
 

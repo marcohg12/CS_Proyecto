@@ -21,11 +21,11 @@ function PostCard({ post }){
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
             <div className="d-flex align-items-center">
-                <i class="bi bi-chat-right me-1"></i>
+                <i className="bi bi-chat-right me-1"></i>
                 {post.replies_count}
-                <i class="bi bi-repeat ms-4 me-1"></i>
+                <i className="bi bi-repeat ms-4 me-1"></i>
                 {post.reblogs_count}
-                <i class="bi bi-suit-heart ms-4 me-1"></i>
+                <i className="bi bi-suit-heart ms-4 me-1"></i>
                 {post.favourites_count}
             </div>
         </div>

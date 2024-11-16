@@ -2,3 +2,14 @@
     background-color: #0C28E1;
     background-image: linear-gradient(180deg, #E7EAFF, #0C28E1);
 }
+
+.no-link-styles {
+    text-decoration: none; 
+    color: inherit;       
+}
+  
+.no-link-styles:hover {
+    text-decoration: none;
+    color: inherit;        
+}
+  

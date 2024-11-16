@@ -6,6 +6,7 @@ import authRouter from "./routers/auth-router.js";
 // Configuración del servidor
 const app = express();
 app.use(cors());
+const port = 4700;
 
 // Configuración de routers
 app.use('/auth', authRouter);
@@ -16,6 +17,6 @@ app.get("/", async (req, res) => {
 });
 
 // Configuraciones adicionales
-app.listen(process.env.PORT, () => {
-    console.log(`Corriendo en el puerto ${process.env.PORT}`);
+app.listen(port, () => {
+    console.log(`Corriendo en el puerto ${port}`);
 });

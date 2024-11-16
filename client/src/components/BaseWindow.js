@@ -3,14 +3,13 @@ import React from "react";
 function BaseWindow({sideBar, pageContent}){
 
     return(
-    <>
-    <div className="d-flex">
-        {sideBar}
-        <div className="content p-4" style={{ flex: 1 }}>
+    <div className="container-fluid">
+        <div className="row">
+            {sideBar}
             {pageContent}
         </div>
     </div>
-    </>);
+    );
 
 }
 

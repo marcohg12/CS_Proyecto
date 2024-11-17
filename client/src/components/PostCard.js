@@ -23,7 +23,7 @@ function PostCard({ post }){
                     style={{ width: '40px', height: '40px'}}
                 />
                 <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
-                <small className="mt-1">{relativeTime}</small>
+                <small className="mt-1 fw-light">{relativeTime}</small>
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
             <div className="d-flex align-items-center justify-content-between mt-2">

@@ -33,6 +33,12 @@ function ActionsSideBar(){
                 <ul className="list-group">
                     <li className="list-group-item border-0">
                         <div className="d-flex justify-content-start align-items-center">
+                            <i className="bi bi-house me-2" style={{ fontSize: '30px' }}></i>
+                            <Link to="/main" className="no-link-styles mb-0">Inicio</Link>
+                        </div>
+                    </li>
+                    <li className="list-group-item border-0">
+                        <div className="d-flex justify-content-start align-items-center">
                             <i className="bi bi-person-circle me-2" style={{ fontSize: '30px' }}></i>
                             <Link to="/" className="no-link-styles mb-0">Mi perfil</Link>
                         </div>

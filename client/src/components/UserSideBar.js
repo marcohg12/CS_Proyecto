@@ -1,34 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../styles/general.css";
-import axios from "axios";
+import { useUser } from "./UserContext";
 
 function UserSideBar(){
     
-    const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { currentUser, loadingUser } = useUser();
 
-    useEffect(() => {
-        
-        async function fetchUserData(){
-            
-            try {
-                
-                const response = await axios.get('https://mastodon.social/api/v1/accounts/verify_credentials', {
-                    headers: {Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}`}
-                });
-                
-                setUserData(response.data);
-            
-            } catch (err) {
-                console.error('Error obteniendo los datos del usuario:', err);
-            } finally {
-                setLoading(false); 
-            }
-        };
-    
-        fetchUserData();
-
-      }, []);
 
     async function handleLogOut(){
 
@@ -40,15 +17,15 @@ function UserSideBar(){
     >
         
         <div className="d-flex flex-column align-items-center mt-4">   
-            {!loading && userData? 
+            {!loadingUser && currentUser? 
             (<>
             <img
-                src={userData.avatar}
+                src={currentUser.avatar}
                 alt="Mi foto de perfil"
                 className="rounded-circle mb-1"
                 style={{ width: '90px', height: '90px' }}
                 />
-            <p className="text-center fw-bold text-light">@{userData.username}</p>
+            <p className="text-center fw-bold text-light">@{currentUser.username}</p>
             </>) : 
             (<></>)}
         </div>

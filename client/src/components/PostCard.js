@@ -1,6 +1,7 @@
 import React from "react";
 import DOMPurify from "dompurify";
 import "../styles/general.css";
+import PostActionsButton from "./PostActionsButton";
 
 function PostCard({ post }){
 
@@ -27,6 +28,10 @@ function PostCard({ post }){
                 {post.reblogs_count}
                 <i className="bi bi-suit-heart ms-4 me-1"></i>
                 {post.favourites_count}
+                
+                <div className="ms-auto">
+                    <PostActionsButton postAccountId={post.account.id} />
+                </div>
             </div>
         </div>
     </div>

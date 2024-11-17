@@ -19,6 +19,11 @@ export function TimelineProvider({ children }){
         setPosts((prevPosts) => [newPost, ...prevPosts]);
     };
 
+    // Elimina un post de la lista
+    const deletePost = (postId) => {
+        setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+    }
+
     // Obtiene los post según el tipo de timeline
     const fetchPosts = useCallback(async (type) => {
 
@@ -65,7 +70,7 @@ export function TimelineProvider({ children }){
     }, [loading, hasMore, maxId]);
     
     return (
-    <TimelineContext.Provider value={{ posts, addPost, fetchPosts, loading, hasMore }}>
+    <TimelineContext.Provider value={{ posts, addPost, deletePost, fetchPosts, loading, hasMore }}>
         {children}
     </TimelineContext.Provider>
     );

@@ -1,11 +1,16 @@
 import React from "react";
 import DOMPurify from "dompurify";
 import "../styles/general.css";
+import { formatDistanceToNow } from 'date-fns'; 
+import { es } from 'date-fns/locale';
 import PostActionsButton from "./PostActionsButton";
 
 function PostCard({ post }){
 
     const sanitizedContent = DOMPurify.sanitize(post.content);
+    const relativeTime = formatDistanceToNow(new Date(post.created_at), 
+                        { addSuffix: true, locale: es })
+                        .replace(/alrededor de /, '');;
 
     return(
     <div className="card mb-3">
@@ -18,20 +23,27 @@ function PostCard({ post }){
                     style={{ width: '40px', height: '40px'}}
                 />
                 <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
-                <small className="mt-1">{new Date(post.created_at).toLocaleString()}</small>
+                <small className="mt-1">{relativeTime}</small>
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
-            <div className="d-flex align-items-center">
-                <i className="bi bi-chat-right me-1"></i>
-                {post.replies_count}
-                <i className="bi bi-repeat ms-4 me-1"></i>
-                {post.reblogs_count}
-                <i className="bi bi-suit-heart ms-4 me-1"></i>
-                {post.favourites_count}
-                
-                <div className="ms-auto">
-                    <PostActionsButton postAccountId={post.account.id} />
+            <div className="d-flex align-items-center justify-content-between mt-2">
+
+                <div>
+                    <i className="bi bi-chat-right me-1"></i>
+                    {post.replies_count}
                 </div>
+
+                <div>
+                    <i className="bi bi-repeat ms-4 me-1"></i>
+                    {post.reblogs_count}
+                </div>
+
+                <div>
+                    <i className="bi bi-suit-heart ms-4 me-1"></i>
+                    {post.favourites_count}
+                </div>
+        
+                <PostActionsButton postAccountId={post.account.id} postId={post.id} />
             </div>
         </div>
     </div>

@@ -3,11 +3,17 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { AlertProvider } from './components/AlertContext';
+import { TimelineProvider } from './components/TimelineContex';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode>
-    <App />
+  <AlertProvider>
+    <TimelineProvider>
+      <App />
+    </TimelineProvider>
+  </AlertProvider>
   //</React.StrictMode>
 );
 

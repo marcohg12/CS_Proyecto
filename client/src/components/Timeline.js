@@ -1,88 +1,45 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useTimeline } from "./TimelineContex";
 import "../styles/general.css";
-import axios from "axios";
 import PostCard from "./PostCard";
 import ReactLoading from "react-loading";
 
 function Timeline({ type }) {
+    
+    const { posts, fetchPosts, loading, hasMore } = useTimeline();
+    
+    // Carga los posts al cargar el componente
+    useEffect(() => {
+        fetchPosts(type);
+    }, [fetchPosts, type]);
+    
 
-  const [posts, setPosts] = useState([]);       
-  const [loading, setLoading] = useState(false); 
-  const [hasMore, setHasMore] = useState(true);  
-  const [maxId, setMaxId] = useState(null);
+    // Carga más posts cuando se esté llegando a la parte baja de la página (cuando se hace scroll hacía abajo)
+    const handleScroll = useCallback(() => {
+        
+        const bottom = window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight;
+        
+        if (bottom && !loading && hasMore) {
+            fetchPosts(type);
+        }
+    
+    }, [loading, hasMore, fetchPosts, type]);
+    
+    // Maneja el listener de la ventana para cargar más posts
+    useEffect(() => {
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
 
-  const fetchPosts = useCallback(async () => {
-
-    if (loading || !hasMore) {
-      return;
-    }
-
-    setLoading(true);
-
-    let requestString;
-
-    if (type === "public"){
-        requestString = "https://mastodon.social/api/v1/timelines/public?local=true";
-    }
-    else if (type === "home"){
-        requestString = "https://mastodon.social/api/v1/timelines/home";
-    }
-
-    try {
-      const response = await axios.get(requestString, {
-        params: { max_id: maxId },
-        headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
-      });
-
-      const data = response.data;
-      
-      setPosts((prevPosts) => [...prevPosts, ...data]);
-
-      setHasMore(data.length > 0);
-
-      if (data.length > 0) {
-        const linkHeader = response.headers.link;
-        const nextMatch = linkHeader.match(/<([^>]+)>;\s*rel="next"/);
-        const nextUrl = nextMatch[1];
-        const maxIdMatch = nextUrl.match(/max_id=(\d+)/);
-        setMaxId(maxIdMatch[1]);
-      }
-
-    } catch (error) {
-      console.error("Error obteniendo las publicaciones:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [loading, hasMore, maxId, type]);
-
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
-
-  const handleScroll = useCallback(() => {
-
-    const bottom = window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight;
-
-    if (bottom && !loading && hasMore) {
-      fetchPosts();
-    }
-
-  }, [loading, hasMore, fetchPosts]);
-
-  useEffect(() => {
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-
-  }, [handleScroll]);
-
-  return (
-    <div className="col-6 offset-3">
-
+    }, [handleScroll]);
+    
+    return (
+    <div>
+        
         <Link to="/" className="no-link-styles">
             <div className="d-flex align-items-center border-bottom border-1 mb-3">
                 <i className="bi bi-house mb-0 me-1" style={{ fontSize: '40px' }}></i>
@@ -102,7 +59,7 @@ function Timeline({ type }) {
       </div>
 
     </div>
-  );
+    );
 }
 
 export default Timeline;

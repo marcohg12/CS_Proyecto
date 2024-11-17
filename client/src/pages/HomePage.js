@@ -7,7 +7,7 @@ function HomePage(){
 
     return(
     <BaseWindow 
-        sideBar={<HomeSideBar/>} 
+        leftSideBar={<HomeSideBar/>} 
         pageContent={<Timeline type="public"/>}
     />);
 

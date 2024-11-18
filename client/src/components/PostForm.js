@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "../styles/general.css";
 import axios from 'axios';
-import { useAlert } from "./AlertContext";
-import { useTimeline } from "./TimelineContex";
+import { useAlert } from "../providers/AlertContext";
+import { useHomeTimeline } from "../providers/HomeTimelineContext";
 
 function PostForm(){
 
     const [text, setText] = useState("");
     const { showAlert } = useAlert();
-    const { addPost } = useTimeline();
+    const { addPost } = useHomeTimeline();
 
     async function handlePostPublication(e){
 

@@ -1,14 +1,14 @@
 import React from "react";
-import { useUser } from "./UserContext";
+import { useUser } from "../providers/UserContext";
 import axios from "axios";
-import { useAlert } from "./AlertContext";
-import { useTimeline } from "./TimelineContex";
+import { useAlert } from "../providers/AlertContext";
+import { useHomeTimeline } from "../providers/HomeTimelineContext";
 
 function PostActionsButton({ postAccountId, postId }){
 
     const { showAlert } = useAlert();
     const { currentUser, loadingUser } = useUser();
-    const { deletePost } = useTimeline();
+    const { deletePost } = useHomeTimeline();
 
     async function handleDeletePost(){
         try {

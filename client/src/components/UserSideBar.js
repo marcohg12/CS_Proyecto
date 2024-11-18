@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/general.css";
-import { useUser } from "./UserContext";
+import { useUser } from "../providers/UserContext";
 
 function UserSideBar(){
     

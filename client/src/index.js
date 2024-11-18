@@ -4,19 +4,22 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { AlertProvider } from './components/AlertContext';
-import { TimelineProvider } from './components/TimelineContex';
-import { UserProvider } from './components/UserContext';
+import { AlertProvider } from './providers/AlertContext';
+import { UserProvider } from './providers/UserContext';
+import { HomeTimelineProvider } from './providers/HomeTimelineContext';
+import { PublicTimelineProvider } from './providers/PublicTimelineContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode>
   <AlertProvider>
-    <UserProvider>
-      <TimelineProvider>
-        <App />
-      </TimelineProvider>
-    </UserProvider>
+    <PublicTimelineProvider>
+      <UserProvider>
+        <HomeTimelineProvider>
+          <App />
+        </HomeTimelineProvider>
+      </UserProvider>
+    </PublicTimelineProvider>
   </AlertProvider>
   //</React.StrictMode>
 );

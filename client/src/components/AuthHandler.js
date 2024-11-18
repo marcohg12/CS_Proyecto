@@ -19,10 +19,10 @@ function AuthHandler(){
                 const response = await axios.get(`${SERVER_ROUTE}/auth/login_callback?code=${code}`);
                 const { access_token } = response.data;
                 localStorage.setItem("mastodon_access_token", access_token);
-                navigate('/main');
+                navigate('/main/home');
             } 
             else {
-                console.error('Authorization code is missing from the URL.');
+                console.error('Falta el código de autorización en el URL.');
             }
         }
 

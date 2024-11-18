@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import axios from "axios";
 
-const TimelineContext = createContext();
+const HomeTimelineContext = createContext();
 
-export function useTimeline(){
-  return useContext(TimelineContext);
+export function useHomeTimeline(){
+  return useContext(HomeTimelineContext);
 }
 
-export function TimelineProvider({ children }){
+export function HomeTimelineProvider({ children }){
     
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -24,8 +24,8 @@ export function TimelineProvider({ children }){
         setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
     }
 
-    // Obtiene los post según el tipo de timeline
-    const fetchPosts = useCallback(async (type) => {
+    // Obtiene los post del timeline del usuario
+    const fetchPosts = useCallback(async () => {
 
         if (loading || !hasMore) {
             return;
@@ -33,19 +33,9 @@ export function TimelineProvider({ children }){
 
         setLoading(true);
 
-        let requestString;
-
-        if (type === "public") {
-            // Obtiene el timeline público
-            requestString = "https://mastodon.social/api/v1/timelines/public?local=true";
-        } else if (type === "home") {
-            // Obtiene el timeline del usuario en sesión
-            requestString = "https://mastodon.social/api/v1/timelines/home";
-        }
-
         try {
 
-            const response = await axios.get(requestString, {
+            const response = await axios.get("https://mastodon.social/api/v1/timelines/home", {
                 params: { max_id: maxId },
                 headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
             });
@@ -70,9 +60,9 @@ export function TimelineProvider({ children }){
     }, [loading, hasMore, maxId]);
     
     return (
-    <TimelineContext.Provider value={{ posts, addPost, deletePost, fetchPosts, loading, hasMore }}>
+    <HomeTimelineContext.Provider value={{ posts, addPost, deletePost, fetchPosts, loading, hasMore }}>
         {children}
-    </TimelineContext.Provider>
+    </HomeTimelineContext.Provider>
     );
 
 }

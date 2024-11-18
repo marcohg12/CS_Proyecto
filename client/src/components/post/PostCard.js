@@ -1,11 +1,11 @@
 import React from "react";
 import DOMPurify from "dompurify";
-import "../styles/general.css";
+import "../../styles/general.css";
 import { formatDistanceToNow } from 'date-fns'; 
 import { es } from 'date-fns/locale';
-import PostActionsButton from "./PostActionsButton";
+import PostActionsButton from "../post_buttons/PostActionsButton";
 import { Link } from "react-router-dom";
-import LikeButton from "./post_buttons/LikeButton";
+import LikeButton from "../post_buttons/LikeButton";
 
 function PostCard({ post }){
 

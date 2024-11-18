@@ -1,8 +1,8 @@
 import React from "react";
-import { useUser } from "../providers/UserContext";
+import { useUser } from "../../providers/UserContext";
 import axios from "axios";
-import { useAlert } from "../providers/AlertContext";
-import { useHomeTimeline } from "../providers/HomeTimelineContext";
+import { useAlert } from "../../providers/AlertContext";
+import { useHomeTimeline } from "../../providers/HomeTimelineContext";
 import { Link } from "react-router-dom";
 
 function PostActionsButton({ postAccountId, postId }){

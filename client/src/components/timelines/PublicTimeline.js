@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { usePublicTimeline } from "../../providers/PublicTimelineContext";
 import "../../styles/general.css";
-import PostCard from "../PostCard";
+import PostCard from "../post/PostCard";
 import ReactLoading from "react-loading";
 
 function PublicTimeline() {

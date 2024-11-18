@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import DOMPurify from "dompurify";
-import "../styles/general.css";
-import PostActionsButton from "./PostActionsButton";
-import LikeButton from "./post_buttons/LikeButton";
+import "../../styles/general.css";
+import PostActionsButton from "../post_buttons/PostActionsButton";
+import LikeButton from "../post_buttons/LikeButton";
 
 function PostDetailCard({ post }){
 

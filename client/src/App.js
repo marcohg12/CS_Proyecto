@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import AuthHandler from './components/AuthHandler';
 import UserMain from './pages/UserMain';
 import HomeTimeline from './components/timelines/HomeTimeline';
-import PostConversation from './components/PostConversation';
+import PostConversation from './components/post/PostConversation';
 
 function App() {
   return (

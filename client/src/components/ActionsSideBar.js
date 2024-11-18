@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/general.css";
-import PostForm from "./PostForm";
+import PostForm from "./post/PostForm";
 
 function ActionsSideBar(){
 

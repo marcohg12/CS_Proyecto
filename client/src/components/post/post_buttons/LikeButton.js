@@ -47,7 +47,14 @@ function LikeButton({postId, likesCount, likeStatus, showLikesCount, callbackOnC
         (<i className="bi bi-heart-fill ms-4 me-1" style={{color: "#ff4d4d"}}></i>)
         :
         (<i className="bi bi-heart ms-4 me-1"></i>)}
-        {showLikesCount? (likes) : (<></>)}
+        {showLikesCount? 
+        (
+        <span style={{ color: isLiked ? "#ff4d4d" : "black" }}>
+            {likes}
+        </span>
+        ) 
+        : 
+        (<></>)}
     </div>
     );
 

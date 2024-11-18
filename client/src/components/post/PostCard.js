@@ -5,7 +5,8 @@ import { formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import PostActionsButton from "../post_buttons/PostActionsButton";
 import { Link } from "react-router-dom";
-import LikeButton from "../post_buttons/LikeButton";
+import LikeButton from "./post_buttons/LikeButton";
+import RespostButton from "./post_buttons/RepostButton";
 
 function PostCard({ post }){
 
@@ -38,12 +39,21 @@ function PostCard({ post }){
                 </div>
 
                 <div>
-                    <i className="bi bi-repeat ms-4 me-1"></i>
-                    {post.reblogs_count}
+                    <RespostButton 
+                        postId={post.id}
+                        repostsCount={post.reblogs_count}
+                        repostStaus={post.reblogged}
+                        showRepostsCount={true}>
+                    </RespostButton>
                 </div>
 
                 <div>
-                    <LikeButton postId={post.id} likesCount={post.favourites_count} likeStatus={post.favourited} showLikesCount={true}></LikeButton>
+                    <LikeButton 
+                        postId={post.id} 
+                        likesCount={post.favourites_count} 
+                        likeStatus={post.favourited} 
+                        showLikesCount={true}>
+                    </LikeButton>
                 </div>
         
                 <PostActionsButton postAccountId={post.account.id} postId={post.id} />

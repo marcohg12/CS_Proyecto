@@ -3,6 +3,7 @@ import { useUser } from "../providers/UserContext";
 import axios from "axios";
 import { useAlert } from "../providers/AlertContext";
 import { useHomeTimeline } from "../providers/HomeTimelineContext";
+import { Link } from "react-router-dom";
 
 function PostActionsButton({ postAccountId, postId }){
 
@@ -28,7 +29,7 @@ function PostActionsButton({ postAccountId, postId }){
             <i className="bi bi-three-dots"></i>
         </div>
         <ul className="dropdown-menu">
-            <li><button className="dropdown-item">Expandir</button></li>
+        <li><Link to={`/main/post/${postId}`} className="no-link-styles dropdown-item">Expandir</Link></li>
             <li><button className="dropdown-item">Compartir</button></li>
             {!loadingUser && currentUser && (postAccountId === currentUser.id )? 
             (<>

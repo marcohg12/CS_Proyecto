@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import AuthHandler from './components/AuthHandler';
 import UserMain from './pages/UserMain';
 import HomeTimeline from './components/timelines/HomeTimeline';
-import PublicTimeline from './components/timelines/PublicTimeline';
+import PostConversation from './components/PostConversation';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route index element={<HomePage/>}/>
           <Route path="main" element={<UserMain/>}>
             <Route path="home" element={<HomeTimeline/>}></Route>
-            <Route path="post" element={<PublicTimeline/>}></Route>
+            <Route path="post/:postId" element={<PostConversation/>}></Route>
           </Route>
         </Route>
         <Route 

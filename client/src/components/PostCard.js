@@ -4,6 +4,8 @@ import "../styles/general.css";
 import { formatDistanceToNow } from 'date-fns'; 
 import { es } from 'date-fns/locale';
 import PostActionsButton from "./PostActionsButton";
+import { Link } from "react-router-dom";
+import LikeButton from "./post_buttons/LikeButton";
 
 function PostCard({ post }){
 
@@ -15,6 +17,7 @@ function PostCard({ post }){
     return(
     <div className="card mb-3">
         <div className="card-body">
+            <Link to={`/main/post/${post.id}`} className="no-link-styles">
             <div className="d-flex align-items-center mb-2">
                 <img 
                     src={post.account.avatar}
@@ -26,6 +29,7 @@ function PostCard({ post }){
                 <small className="mt-1 fw-light">{relativeTime}</small>
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
+            </Link>
             <div className="d-flex align-items-center justify-content-between mt-2">
 
                 <div>
@@ -39,8 +43,7 @@ function PostCard({ post }){
                 </div>
 
                 <div>
-                    <i className="bi bi-suit-heart ms-4 me-1"></i>
-                    {post.favourites_count}
+                    <LikeButton postId={post.id} likesCount={post.favourites_count} likeStatus={post.favourited} showLikesCount={true}></LikeButton>
                 </div>
         
                 <PostActionsButton postAccountId={post.account.id} postId={post.id} />

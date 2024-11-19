@@ -11,7 +11,16 @@ function RespostButton({postId, repostsCount, repostStaus, showRepostsCount, cal
         if (isReposted){
 
             try {
-                // Implementar quitar el compartido
+                // Quitar el compartido
+                await axios.post(`https://mastodon.social/api/v1/statuses/${postId}/unreblog`, {}, {
+                    headers: {Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}`}
+                });
+                setReposts(reposts - 1);
+                setIsReposted(false);
+
+                if(callbackOnChange){
+                    callbackOnChange(reposts - 1);
+                }
             } catch (e){
                 console.log("Ocurrió un error al quitar el compartido en la publicación", e);
             }
@@ -19,12 +28,22 @@ function RespostButton({postId, repostsCount, repostStaus, showRepostsCount, cal
         } else {
             
             try {
-                // Implementar poner el compartido
+                // Poner el compartido
+                await axios.post(`https://mastodon.social/api/v1/statuses/${postId}/reblog`, {}, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
+                });
+                setReposts(reposts + 1);
+                setIsReposted(true);
+
+                if(callbackOnChange){
+                    callbackOnChange(reposts + 1);
+                }
             } catch (e){
                 console.log("Ocurrió un error al compartir la publicación", e);
             }
             
         }
+        console.log("Después de la acción:", { isReposted, reposts });
     }
 
     return(

@@ -41,7 +41,8 @@ export function HomeTimelineProvider({ children }){
             });
 
             const data = response.data;
-            setPosts((prevPosts) => [...prevPosts, ...data]);
+            const directPosts = response.data.filter(post => post.in_reply_to_id === null);
+            setPosts((prevPosts) => [...prevPosts, ...directPosts]);
             setHasMore(data.length > 0);
 
             // Configura el id de paginación si hay más posts

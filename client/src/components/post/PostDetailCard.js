@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DOMPurify from "dompurify";
 import "../../styles/general.css";
-import PostActionsButton from "../post_buttons/PostActionsButton";
+import PostActionsButton from "./post_buttons/PostActionsButton";
 import LikeButton from "./post_buttons/LikeButton";
 
 function PostDetailCard({ post }){
@@ -31,13 +31,6 @@ function PostDetailCard({ post }){
             <div className="d-flex mt-1 align-items-center py-3 border-bottom border-top border-1">
 
                 <div className="mx-2">
-                    {post.replies_count}
-                    {" "} {post.replies_count === 1? "respuesta" : "respuestas"}
-                </div>
-
-                <i className="bi bi-dot"></i>
-
-                <div className="mx-2">
                     {post.reblogs_count}
                     {" "} {post.reblogs_count === 1? "compartido" : "compartidos"}
                 </div>
@@ -53,7 +46,7 @@ function PostDetailCard({ post }){
             <div className="d-flex align-items-center justify-content-between mx-2 mt-4">
                 
                 <div>
-                    <i className="bi bi-chat-right me-1"></i>
+                    <i className="bi bi-bookmark me-1"></i>
                 </div>
                 
                 <div>

@@ -3,7 +3,7 @@ import DOMPurify from "dompurify";
 import "../../styles/general.css";
 import PostActionsButton from "./post_buttons/PostActionsButton";
 import LikeButton from "./post_buttons/LikeButton";
-import BookmarkButton from "./post_buttons/BookMarkButton";
+import BookmarkButton from "./post_buttons/BookmarkButton";
 import RepostButton from "./post_buttons/RepostButton";
 
 function PostDetailCard({ post }){

@@ -3,14 +3,21 @@ import DOMPurify from "dompurify";
 import "../../styles/general.css";
 import PostActionsButton from "./post_buttons/PostActionsButton";
 import LikeButton from "./post_buttons/LikeButton";
+import BookmarkButton from "./post_buttons/BookMarkButton";
+import RepostButton from "./post_buttons/RepostButton";
 
 function PostDetailCard({ post }){
 
     const sanitizedContent = DOMPurify.sanitize(post.content);
     const [likes, setLikes] = useState(post.favourites_count);
+    const [reposts, setReposts] = useState(post.reblogs_count);
 
     const handleLikesChange = (newLikes) => {
         setLikes(newLikes);
+    };
+
+    const handleRepostsChange = (newReposts) => {
+        setReposts(newReposts)
     };
 
     return(
@@ -31,8 +38,8 @@ function PostDetailCard({ post }){
             <div className="d-flex mt-1 align-items-center py-3 border-bottom border-top border-1">
 
                 <div className="mx-2">
-                    {post.reblogs_count}
-                    {" "} {post.reblogs_count === 1? "compartido" : "compartidos"}
+                    {reposts}
+                    {" "} {reposts === 1? "compartido" : "compartidos"}
                 </div>
 
                 <i className="bi bi-dot"></i>
@@ -46,11 +53,18 @@ function PostDetailCard({ post }){
             <div className="d-flex align-items-center justify-content-between mx-2 mt-4">
                 
                 <div>
-                    <i className="bi bi-bookmark me-1"></i>
+                    <BookmarkButton 
+                        postId={post.id} 
+                        bookmarkStatus={post.bookmarked}></BookmarkButton>
                 </div>
                 
                 <div>
-                    <i className="bi bi-repeat ms-4 me-1"></i>
+                    <RepostButton
+                        postId={post.id}
+                        repostsCount={post.reblogs_count}
+                        repostStaus={post.reblogged}
+                        showRepostsCount={false}
+                        callbackOnChange={handleRepostsChange}></RepostButton>
                 </div>
                 
                 <div>

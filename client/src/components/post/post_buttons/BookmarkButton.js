@@ -10,14 +10,20 @@ function BookmarkButton({postId, bookmarkStatus}){
         if (isBookmarked){
 
             try {
-                // Implementar quitar el guardado
+                await axios.post(`https://mastodon.social/api/v1/statuses/${postId}/unbookmark`, {}, {
+                    headers: {Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}`}
+                });
+                setIsBookmarked(false);
             } catch (e){
                 console.log("Ocurrió un error al quitar el guardado en la publicación", e);
             }
         } else {
             
             try {
-                // Implementar guardar la publicación
+                await axios.post(`https://mastodon.social/api/v1/statuses/${postId}/bookmark`, {}, {
+                    headers: {Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}`}
+                });
+                setIsBookmarked(true);
             } catch (e){
                 console.log("Ocurrió un error al guardar la publicación", e);
             }

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/general.css";
 import PostForm from "./post/PostForm";
+import logo from "../images/Logo.png"
 
 function ActionsSideBar(){
 
@@ -10,7 +11,7 @@ function ActionsSideBar(){
          style={{ height: '100vh' }}>
 
             <div className="mt-4">
-                <h1>Mapari</h1>
+                <img src={logo} alt="Mapari Logo" />
             </div>
 
             <div className="w-100 mt-4 border-bottom border-1">

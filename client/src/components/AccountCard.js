@@ -38,7 +38,7 @@ function AccountCard({ account, isMyAccount }){
         </div>
 
         <div className="d-flex mx-4">
-            <p className="me-2">{account.statuses_count} {account.statuses_count === 1? "publicación" : "publicaciones"}</p>
+            <p className="me-2">{account.statuses_count} {account.statuses_count === 1? "debate" : "debates"}</p>
             <i className="bi bi-dot"></i>
             <p className="mx-2">{account.following_count} {"siguiendo"}</p>
             <i className="bi bi-dot"></i>

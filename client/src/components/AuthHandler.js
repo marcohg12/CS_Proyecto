@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { SERVER_ROUTE } from '../utils/constants';
+import { useUser } from '../providers/UserContext';
 
 function AuthHandler(){
 
     const navigate = useNavigate();
+    const { fetchUserData } = useUser();
     
     useEffect(() => {
 
@@ -19,6 +21,7 @@ function AuthHandler(){
                 const response = await axios.get(`${SERVER_ROUTE}/auth/login_callback?code=${code}`);
                 const { access_token } = response.data;
                 localStorage.setItem("mastodon_access_token", access_token);
+                await fetchUserData();
                 navigate('/main/home');
             } 
             else {
@@ -27,7 +30,7 @@ function AuthHandler(){
         }
 
         getAccessToken();
-        
+        // eslint-disable-next-line
     }, [navigate]);
 
 };

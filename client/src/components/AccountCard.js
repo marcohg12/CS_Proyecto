@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import FollowButton from "./FollowButton";
 
 function AccountCard({ account, isMyAccount }){
+
+    const [followersCount, setFollowersCount] = useState(account.followers_count);
+
+    const updateFollowersCount = (newFollowersCount) => {
+        setFollowersCount(newFollowersCount);
+    }
 
     return(
     <div className="card mb-3">
@@ -29,7 +35,7 @@ function AccountCard({ account, isMyAccount }){
             {isMyAccount?
             (<button type="button" className="btn btn-primary">Editar perfil</button>)
             :
-            (<FollowButton accountId={account.id}></FollowButton>)}
+            (<FollowButton accountId={account.id} followersCountCallback={updateFollowersCount} followersCount={followersCount}></FollowButton>)}
             
         </div>
 
@@ -42,7 +48,7 @@ function AccountCard({ account, isMyAccount }){
             <i className="bi bi-dot"></i>
             <p className="mx-2">{account.following_count} {"siguiendo"}</p>
             <i className="bi bi-dot"></i>
-            <p className="mx-2">{account.followers_count} {account.followers_count === 1? "seguidor" : "seguidores"}</p>
+            <p className="mx-2">{followersCount} {followersCount === 1? "seguidor" : "seguidores"}</p>
         </div>
         
     </div>);

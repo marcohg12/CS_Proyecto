@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function FollowButton({ accountId }){
+function FollowButton({ accountId, followersCount, followersCountCallback }){
 
     const [isFollowing, setIsFollowing] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -44,6 +44,7 @@ function FollowButton({ accountId }){
                     headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
                 });
                 setIsFollowing(false);
+                followersCountCallback(followersCount - 1);
             } catch (e){
                 console.log("Error al dejar de seguir al usuario", e);
             }
@@ -55,6 +56,7 @@ function FollowButton({ accountId }){
                     headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
                 });
                 setIsFollowing(true);
+                followersCountCallback(followersCount + 1);
             } catch (e){
                 console.log("Error al seguir al usuario", e);
             }

@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/general.css";
 import { useUser } from "../providers/UserContext";
+import { Link } from "react-router-dom";
 
 function UserSideBar(){
     
     const { currentUser, loadingUser } = useUser();
-
 
     async function handleLogOut(){
 
@@ -25,7 +25,9 @@ function UserSideBar(){
                 className="rounded-circle mb-1"
                 style={{ width: '90px', height: '90px' }}
                 />
-            <p className="text-center fw-bold text-light">@{currentUser.username}</p>
+            <Link className="no-link-styles" to={`/main/profile/${currentUser.id}`}>
+                <p className="text-center fw-bold text-light">@{currentUser.username}</p>
+            </Link>
             </>) : 
             (<></>)}
         </div>

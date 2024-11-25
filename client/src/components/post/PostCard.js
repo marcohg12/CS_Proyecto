@@ -26,7 +26,11 @@ function PostCard({ post }){
                     alt="Foto de perfil"
                     style={{ width: '40px', height: '40px'}}
                 />
-                <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
+                <div>
+                    <Link className="no-link-styles" to={`/main/profile/${post.account.id}`}>
+                        <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
+                    </Link>
+                </div>
                 <small className="mt-1 fw-light">{relativeTime}</small>
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>

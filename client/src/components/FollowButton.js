@@ -40,7 +40,7 @@ function FollowButton({ accountId }){
         if (isFollowing){
 
             try {
-                await axios.post(`https://mastodon.social/api/v1/accounts/${accountId}/unfollow`, {
+                await axios.post(`https://mastodon.social/api/v1/accounts/${accountId}/unfollow`, {}, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
                 });
                 setIsFollowing(false);
@@ -51,7 +51,7 @@ function FollowButton({ accountId }){
         } else {
 
             try {
-                await axios.post(`https://mastodon.social/api/v1/accounts/${accountId}/follow`, {
+                await axios.post(`https://mastodon.social/api/v1/accounts/${accountId}/follow`,{}, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
                 });
                 setIsFollowing(true);

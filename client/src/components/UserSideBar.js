@@ -2,13 +2,16 @@ import React from "react";
 import "../styles/general.css";
 import { useUser } from "../providers/UserContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function UserSideBar(){
     
     const { currentUser, loadingUser } = useUser();
+    const navigate = useNavigate();
 
     async function handleLogOut(){
-
+        localStorage.removeItem("mastodon_access_token");
+        navigate("/");
     }
     
     return(

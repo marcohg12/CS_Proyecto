@@ -49,4 +49,33 @@ router.get("/login_callback", async (req, res) => {
     }
 });
 
+router.post("/logout", async (req, res) => {
+  
+  const { accessToken } = req.body;
+  
+  if (!accessToken) {
+    return res.status(400).json({ error: 'Falta el token de acceso' });
+  }
+
+  try {
+    const response = await axios.post(`https://mastodon.social/oauth/revoke`, null, {
+      params: {
+        client_id: clientId,
+        client_secret: clientSecret,
+        token: accessToken,
+      },
+    });
+
+    if (response.status === 200) {
+      res.status(200).json({ message: 'Cierre de sesión exitoso' });
+    } else {
+      res.status(response.status).json({ error: 'Error al cerrar sesión' });
+    }
+  } catch (error) {
+    console.error('Error al cerrar sesión:', error);
+    res.status(500).json({ error: 'Error al cerrar sesión' });
+  }
+
+});
+
 export default router;

@@ -6,6 +6,7 @@ import authRouter from "./routers/auth-router.js";
 // Configuración del servidor
 const app = express();
 app.use(cors());
+app.use(express.json());
 const port = 4700;
 
 // Configuración de routers

@@ -3,6 +3,8 @@ import "../styles/general.css";
 import { useUser } from "../providers/UserContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { SERVER_ROUTE } from "../utils/constants";
 
 function UserSideBar(){
     
@@ -10,8 +12,19 @@ function UserSideBar(){
     const navigate = useNavigate();
 
     async function handleLogOut(){
-        localStorage.removeItem("mastodon_access_token");
-        navigate("/");
+
+        try {
+            await axios.post(`${SERVER_ROUTE}/auth/logout`, {
+                accessToken: localStorage.getItem("mastodon_access_token")
+            },
+            {
+                headers: {'Content-Type': 'application/json'}
+            });
+            localStorage.removeItem("mastodon_access_token");
+            navigate("/");
+        } catch (e){
+            console.log("Error al cerrar sesión", e);
+        }
     }
     
     return(

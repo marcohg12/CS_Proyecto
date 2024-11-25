@@ -5,6 +5,7 @@ import PostActionsButton from "./post_buttons/PostActionsButton";
 import LikeButton from "./post_buttons/LikeButton";
 import BookmarkButton from "./post_buttons/BookmarkButton";
 import RepostButton from "./post_buttons/RepostButton";
+import { Link } from "react-router-dom";
 
 function PostDetailCard({ post }){
 
@@ -30,7 +31,9 @@ function PostDetailCard({ post }){
                     alt="Foto de perfil"
                     style={{ width: '40px', height: '40px'}}
                 />
-                <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
+                <Link className="no-link-styles" to={`/main/profile/${post.account.id}`}>
+                    <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
+                </Link>
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
             <small className="mt-1 fw-light">{(new Date(post.created_at)).toLocaleString()}</small>

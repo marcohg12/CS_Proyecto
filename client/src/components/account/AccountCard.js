@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FollowButton from "./FollowButton";
+import FollowButton from "../FollowButton";
 
 function AccountCard({ account, isMyAccount }){
 

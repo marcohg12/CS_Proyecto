@@ -39,10 +39,10 @@ function PublicTimeline() {
     return (
     <div>
         
-        <Link to="/home" className="no-link-styles">
+        <Link to="/main/explore" className="no-link-styles">
             <div className="d-flex align-items-center border-bottom border-1 mb-3">
-                <i className="bi bi-house mb-0 me-1" style={{ fontSize: '40px' }}></i>
-                <h4 className="mb-0">Inicio</h4>
+                <i className="bi bi-search mb-0 me-1" style={{ fontSize: '40px' }}></i>
+                <h4 className="mb-0">Explorar</h4>
             </div>
         </Link>
 

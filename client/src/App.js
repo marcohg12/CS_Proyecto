@@ -6,6 +6,7 @@ import UserMain from './pages/UserMain';
 import HomeTimeline from './components/timelines/HomeTimeline';
 import PostConversation from './components/post/PostConversation';
 import UserProfile from './components/UserProfile';
+import PublicTimeline from './components/timelines/PublicTimeline';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<HomePage/>}/>
           <Route path="main" element={<UserMain/>}>
             <Route path="home" element={<HomeTimeline/>}></Route>
+            <Route path="explore" element={<PublicTimeline/>}></Route>
             <Route path="post/:postId" element={<PostConversation/>}></Route>
             <Route path="profile/:userId" element={<UserProfile/>}></Route>
           </Route>

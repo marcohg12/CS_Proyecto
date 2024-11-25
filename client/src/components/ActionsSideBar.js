@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 import "../styles/general.css";
 import PostForm from "./post/PostForm";
 import logo from "../images/Logo.png";
-import { useUser } from "../providers/UserContext";
 
 function ActionsSideBar(){
-
-    const { currentUser } = useUser();
 
     return(
     <div className="col-3 end-0 position-fixed d-flex flex-column justify-content-start z-0" 
@@ -43,8 +40,8 @@ function ActionsSideBar(){
                     </li>
                     <li className="list-group-item border-0">
                         <div className="d-flex justify-content-start align-items-center">
-                            <i className="bi bi-person-circle me-2" style={{ fontSize: '30px' }}></i>
-                            <Link to={`/main/profile/${currentUser?.id}`} className="no-link-styles mb-0">Mi perfil</Link>
+                            <i className="bi bi-search me-2" style={{ fontSize: '30px' }}></i>
+                            <Link to={`/main/explore`} className="no-link-styles mb-0">Explorar</Link>
                         </div>
                     </li>
                     <li className="list-group-item border-0">

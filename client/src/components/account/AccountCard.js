@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FollowButton from "../FollowButton";
+import { Link } from "react-router-dom";
 
 function AccountCard({ account, isMyAccount }){
 
@@ -43,12 +44,18 @@ function AccountCard({ account, isMyAccount }){
             <h4>{account.username}</h4>
         </div>
 
-        <div className="d-flex mx-4">
-            <p className="me-2">{account.statuses_count} {account.statuses_count === 1? "debate" : "debates"}</p>
+        <div className="d-flex mx-4 mb-3">
+            <Link className="no-link-styles me-2" to={`/main/profile/${account.id}`}>
+                {account.statuses_count} {account.statuses_count === 1? "debate" : "debates"}
+            </Link>
             <i className="bi bi-dot"></i>
-            <p className="mx-2">{account.following_count} {"siguiendo"}</p>
+            <Link className="no-link-styles mx-2" to={`/main/profile/${account.id}/following`}>
+                {account.following_count} {"siguiendo"}
+            </Link>
             <i className="bi bi-dot"></i>
-            <p className="mx-2">{followersCount} {followersCount === 1? "seguidor" : "seguidores"}</p>
+            <Link className="no-link-styles mx-2" to={`/main/profile/${account.id}/followers`}>
+                {followersCount} {followersCount === 1? "seguidor" : "seguidores"}
+            </Link>
         </div>
         
     </div>);

@@ -8,6 +8,8 @@ import PostConversation from './components/post/PostConversation';
 import UserProfile from './components/account/UserProfile';
 import PublicTimeline from './components/timelines/PublicTimeline';
 import AccountPosts from './components/account/AccountPosts';
+import AccountFollowers from './components/account/AccountFollowers';
+import AccountFollowing from './components/account/AccountFollowing';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path="post/:postId" element={<PostConversation/>}></Route>
             <Route path="profile/:userId" element={<UserProfile/>}>
               <Route index element={<AccountPosts/>}></Route>
+              <Route path="followers" element={<AccountFollowers/>}></Route>
+              <Route path="following" element={<AccountFollowing/>}></Route>
             </Route>
           </Route>
         </Route>

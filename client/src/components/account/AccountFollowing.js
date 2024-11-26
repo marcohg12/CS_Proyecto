@@ -4,16 +4,16 @@ import ReactLoading from "react-loading";
 import axios from "axios";
 import PreviewAccountCard from "./PreviewAccountCard";
 
-function AccountFollowers(){
+function AccountFollowing(){
 
     const { userId } = useParams();
-    const [followers, setFollowers] = useState([]);
+    const [following, setFollowing] = useState([]);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [maxId, setMaxId] = useState(null);
     const observer = useRef();
-    
-    const fetchFollowers = useCallback(async() => {
+
+    const fetchFollowing = useCallback(async() => {
 
         if (loading || !hasMore){
             return;
@@ -22,11 +22,11 @@ function AccountFollowers(){
         setLoading(true);
 
         try {
-            const response = await axios.get(`https://mastodon.social/api/v1/accounts/${userId}/followers`, {
+            const response = await axios.get(`https://mastodon.social/api/v1/accounts/${userId}/following`, {
                 params: { max_id: maxId }
             });
 
-            setFollowers((prevFollowers) => [...prevFollowers, ...response.data]);
+            setFollowing((prevFollowers) => [...prevFollowers, ...response.data]);
             setHasMore(response.data.length > 0);
 
             if (response.data.length > 0) {
@@ -43,14 +43,14 @@ function AccountFollowers(){
 
             }
         } catch (e){
-            console.log("Error al obtener los seguidores de la cuenta", e);
+            console.log("Error al obtener los usuarios a los que sigue la cuenta", e);
         } finally {
             setLoading(false);
         }
     }, [loading, hasMore, maxId, userId]);
 
     useEffect(() => {
-        fetchFollowers();
+        fetchFollowing();
         // eslint-disable-next-line
     }, [userId]);
     
@@ -66,20 +66,20 @@ function AccountFollowers(){
         
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                fetchFollowers();
+                fetchFollowing();
             }
         });
         
         if (node){
             observer.current.observe(node);
         }
-    }, [loading, fetchFollowers]);
+    }, [loading, fetchFollowing]);
 
 
     return(
         <>
-        {followers.map((account, index) => (
-            <div ref={followers.length === index + 1 ? lastPostElementRef : null} key={account.id}>
+        {following.map((account, index) => (
+            <div ref={following.length === index + 1 ? lastPostElementRef : null} key={account.id}>
                 <PreviewAccountCard  
                     account={account} 
                 />
@@ -94,4 +94,4 @@ function AccountFollowers(){
     );
 }
 
-export default AccountFollowers;
+export default AccountFollowing;

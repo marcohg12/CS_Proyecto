@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useAlert } from "../../providers/AlertContext";
 import axios from "axios";
-import EvidenceModal from "../EvidenceModal";
+import EvidenceModal from "../modals/EvidenceModal";
 
 function ReplyForm({ postId, addReplyCallback }){
 

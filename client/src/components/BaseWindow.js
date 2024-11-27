@@ -1,5 +1,5 @@
 import React from "react";
-import AlertModal from "./AlertModal";
+import AlertModal from "./modals/AlertModal";
 
 function BaseWindow({leftSideBar, pageContent, rightSideBar}){
 

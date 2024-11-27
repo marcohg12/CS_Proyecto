@@ -1,7 +1,7 @@
 import React from "react";
-import UserSideBar from "../components/UserSideBar";
+import UserSideBar from "../components/sidebars/UserSideBar";
 import BaseWindow from "../components/BaseWindow";
-import ActionsSideBar from "../components/ActionsSideBar";
+import ActionsSideBar from "../components/sidebars/ActionsSideBar";
 import { Outlet } from "react-router";
 
 function UserMain(){

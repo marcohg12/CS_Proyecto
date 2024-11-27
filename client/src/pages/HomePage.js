@@ -1,5 +1,5 @@
 import React from "react";
-import HomeSideBar from "../components/HomeSideBar";
+import HomeSideBar from "../components/sidebars/HomeSideBar";
 import BaseWindow from "../components/BaseWindow";
 import PublicTimeline from "../components/timelines/PublicTimeline";
 

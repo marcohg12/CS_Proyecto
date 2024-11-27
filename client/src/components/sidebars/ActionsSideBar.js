@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/general.css";
-import PostForm from "./post/PostForm";
-import logo from "../images/Logo.png";
+import "../../styles/general.css";
+import PostForm from "../post/PostForm";
+import logo from "../../images/Logo.png";
 
 function ActionsSideBar(){
 

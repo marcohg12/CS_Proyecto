@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/general.css";
+import "../../styles/general.css";
 import axios from 'axios';
-import { SERVER_ROUTE } from "../utils/constants";
+import { SERVER_ROUTE } from "../../utils/constants";
 
 function HomeSideBar(){
 

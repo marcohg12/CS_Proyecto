@@ -1,10 +1,10 @@
 import React from "react";
-import "../styles/general.css";
-import { useUser } from "../providers/UserContext";
+import "../../styles/general.css";
+import { useUser } from "../../providers/UserContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { SERVER_ROUTE } from "../utils/constants";
+import { SERVER_ROUTE } from "../../utils/constants";
 
 function UserSideBar(){
     

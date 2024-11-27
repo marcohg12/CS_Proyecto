@@ -3,7 +3,7 @@ import "../../styles/general.css";
 import axios from 'axios';
 import { useAlert } from "../../providers/AlertContext";
 import { useHomeTimeline } from "../../providers/HomeTimelineContext";
-import EvidenceModal from "../EvidenceModal";
+import EvidenceModal from "../modals/EvidenceModal";
 
 function PostForm(){
 

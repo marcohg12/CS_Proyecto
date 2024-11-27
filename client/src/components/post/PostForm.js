@@ -22,7 +22,7 @@ function PostForm(){
     const deleteEvidenceByIndex = (index) => {
         const newEvidence = evidence.filter((_, i) => i !== index);
         setEvidence(newEvidence);
-      };
+    };
 
     async function handlePostPublication(e){
 

@@ -7,7 +7,7 @@ import logo from "../images/Logo.png";
 function ActionsSideBar(){
 
     return(
-    <div className="col-3 end-0 position-fixed d-flex flex-column justify-content-start z-0" 
+    <div className="col-3 end-0 position-fixed d-flex flex-column justify-content-start" 
          style={{ height: '100vh' }}>
 
             <div className="mt-4">

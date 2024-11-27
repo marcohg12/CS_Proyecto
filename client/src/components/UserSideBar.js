@@ -28,7 +28,7 @@ function UserSideBar(){
     }
     
     return(
-    <div className="col-3 position-fixed main-grad d-flex flex-column justify-content-between align-items-center z-0"
+    <div className="col-3 position-fixed main-grad d-flex flex-column justify-content-between align-items-center"
           style={{ height: '100vh', padding: '1rem' }}
     >
         

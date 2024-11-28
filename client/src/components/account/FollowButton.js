@@ -19,10 +19,13 @@ function FollowButton({ accountId, followersCount, followersCountCallback }){
             try {
 
                 const response = await axios.get(`https://mastodon.social/api/v1/accounts/relationships`, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}` }
+                    headers: { Authorization: `Bearer ${localStorage.getItem("mastodon_access_token")}`,},
+                    params: {id: [accountId]}
                 });
 
-                setIsFollowing(response.data.following);
+                if (response.data[0]){
+                    setIsFollowing(response.data[0].following);
+                }
 
             } catch (e){
                 console.log("Error obteniendo la relación con la cuenta", e);

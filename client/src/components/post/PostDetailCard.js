@@ -48,6 +48,7 @@ function PostDetailCard({ post }){
     return(
     <div className="m-4 py-4 border-bottom border-top border-1">
         <div className="card-body">
+
             <div className="d-flex align-items-center mb-2">
                 <img 
                     src={post.account.avatar}
@@ -59,12 +60,13 @@ function PostDetailCard({ post }){
                     <h5 className="card-title mb-0 me-2">@{post.account.username}</h5>
                 </Link>
             </div>
+
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
 
             {viewEvidences && (
                 <div className="my-1">
-                    {evidence.map((link) => (
-                        <div className="mb-1">
+                    {evidence.map((link, index) => (
+                        <div className="mb-1" key={"link-" + String(index)}>
                             <Microlink url={link} />
                         </div>
                     ))}

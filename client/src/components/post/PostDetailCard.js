@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import "../../styles/general.css";
 import PostActionsButton from "./post_buttons/PostActionsButton";
@@ -6,12 +6,27 @@ import LikeButton from "./post_buttons/LikeButton";
 import BookmarkButton from "./post_buttons/BookmarkButton";
 import RepostButton from "./post_buttons/RepostButton";
 import { Link } from "react-router-dom";
+import Microlink from "@microlink/react";
 
 function PostDetailCard({ post }){
 
-    const sanitizedContent = DOMPurify.sanitize(post.content);
+    const sanitizedContent = DOMPurify.sanitize(post.content.replace(/<a[^>]*>(.*?)<\/a>/g, ''));
     const [likes, setLikes] = useState(post.favourites_count);
     const [reposts, setReposts] = useState(post.reblogs_count);
+    const [evidence, setEvidence] = useState([]);
+    const [viewEvidences, setViewEvidences] = useState(false);
+
+    function extractLinksFromPostContent(content){
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(content, 'text/html');
+        
+        const anchorElements = doc.querySelectorAll('a');
+        
+        const links = Array.from(anchorElements).map(a => a.href);
+      
+        return links;
+    }
 
     const handleLikesChange = (newLikes) => {
         setLikes(newLikes);
@@ -20,6 +35,15 @@ function PostDetailCard({ post }){
     const handleRepostsChange = (newReposts) => {
         setReposts(newReposts)
     };
+
+    const toggleEvidenceView = () => {
+        setViewEvidences(!viewEvidences);
+    }
+
+    useEffect(() => {
+        const links = extractLinksFromPostContent(post.content);
+        setEvidence(links);
+    }, [post]);
 
     return(
     <div className="m-4 py-4 border-bottom border-top border-1">
@@ -36,11 +60,22 @@ function PostDetailCard({ post }){
                 </Link>
             </div>
             <p className="card-text" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
+
+            {viewEvidences && (
+                <div className="my-1">
+                    {evidence.map((link) => (
+                        <div className="mb-1">
+                            <Microlink url={link} />
+                        </div>
+                    ))}
+                </div>
+            )}
+
             <small className="mt-1 fw-light">{(new Date(post.created_at)).toLocaleString()}</small>
 
-            <div className="d-flex mt-1 align-items-center py-3 border-bottom border-top border-1">
+            <div className="d-flex mt-1 py-3 border-bottom border-top border-1">
 
-                <div className="mx-2">
+                <div className="me-2">
                     {reposts}
                     {" "} {reposts === 1? "compartido" : "compartidos"}
                 </div>
@@ -51,6 +86,11 @@ function PostDetailCard({ post }){
                     {likes}
                     {" me gusta"}
                 </div>
+
+                <button className="ms-auto btn btn-outline-secondary" onClick={toggleEvidenceView}>
+                    {viewEvidences? "Ocultar evidencias" : "Ver evidencias"}
+                </button>
+                
             </div>
 
             <div className="d-flex align-items-center justify-content-between mx-2 mt-4">

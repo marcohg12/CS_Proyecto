@@ -10,7 +10,7 @@ import RespostButton from "./post_buttons/RepostButton";
 
 function PostCard({ post }){
 
-    const sanitizedContent = DOMPurify.sanitize(post.content);
+    const sanitizedContent = DOMPurify.sanitize(post.content.replace(/<a[^>]*>(.*?)<\/a>/g, ''));
     const relativeTime = formatDistanceToNow(new Date(post.created_at), 
                         { addSuffix: true, locale: es })
                         .replace(/alrededor de /, '');;
